@@ -6,17 +6,14 @@ Supported operating system: Android, Browser, iOS, Linux, macOS, Windows.
 
 Supported architecture: Arm, Wasm, X86(Include X86-64).
 
-| Operating system | Architecture | .NET version  | Project                     |
-| ---------------- | ------------ | ------------- | --------------------------- |
-| Android          | Arm          | 8.0           | ImageUseVectors.App.Android |
-| Browser          | Wasm         | 8.0           | ImageUseVectors.App.Browser |
-| iOS              | Arm          | 8.0           | ImageUseVectors.App.iOS     |
-| Linux            | Arm, X86     | 8.0           | ImageUseVectors.App.Desktop |
-| macOS            | Arm          | 8.0           | ImageUseVectors.App.Desktop |
-| Windows          | Arm, X86     | 8.0           | ImageUseVectors.App.Desktop |
-| Windows          | X86          | Framework 4.5 | ImageUseVectors.Form①      |
+| Project                     | .NET version  | GUI      | Operating system      | Architecture |
+| --------------------------- | ------------- | -------- | --------------------- | ------------ |
+| ImageUseVectors.App.Android | 8.0           | Avalonia | Android               | Arm          |
+| ImageUseVectors.App.Browser | 8.0           | Avalonia | Browser               | Wasm         |
+| ImageUseVectors.App.Desktop | 8.0           | Avalonia | Linux, macOS, Windows | Arm, X86     |
+| ImageUseVectors.App.iOS     | 8.0           | Avalonia | iOS                   | Arm          |
+| ImageUseVectors.Form        | Framework 4.5 | WinForm  | Windows               | X86          |
 
-① ImageUseVectors.Form: It is a WinForm GUI program based on .NET Framework 4.5.
 
 ## Summary of VectorTraits  
 

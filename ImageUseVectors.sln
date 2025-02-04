@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageUseVectors.App.Desktop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageUseVectors.App.iOS", "ImageUseVectors.App.iOS\ImageUseVectors.App.iOS.csproj", "{9555AC8B-CC9A-47F3-8D5F-50CC0D3596BA}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ImageUseVectors.Inc", "ImageUseVectors.Inc\ImageUseVectors.Inc.shproj", "{5A2B4D24-D345-47A4-AE80-B54D2803C1B7}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ImageUseVectors.Ui.Inc", "ImageUseVectors.Ui.Inc\ImageUseVectors.Ui.Inc.shproj", "{BC7B250B-608C-4D34-93BC-AFA160B1719A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,5 +50,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ImageUseVectors.Inc\ImageUseVectors.Inc.projitems*{5a2b4d24-d345-47a4-ae80-b54d2803c1b7}*SharedItemsImports = 13
+		ImageUseVectors.Ui.Inc\ImageUseVectors.Ui.Inc.projitems*{bc7b250b-608c-4d34-93bc-afa160b1719a}*SharedItemsImports = 13
+		ImageUseVectors.Inc\ImageUseVectors.Inc.projitems*{fab11388-8e40-4a06-9059-b475ebc0576e}*SharedItemsImports = 5
+		ImageUseVectors.Ui.Inc\ImageUseVectors.Ui.Inc.projitems*{fab11388-8e40-4a06-9059-b475ebc0576e}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

@@ -9,5 +9,11 @@
     <Import_RootNamespace>ImageUseVectors</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)TraitsOutput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseMainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseMainViewModel.Method.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IMainViewNotify.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ViewModelExtensions.cs" />
   </ItemGroup>
 </Project>

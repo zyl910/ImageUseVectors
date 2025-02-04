@@ -1,6 +1,9 @@
-﻿namespace ImageUseVectors.App.ViewModels;
+﻿using Avalonia.Media.Imaging;
+using ImageUseVectors.ViewModels;
 
-public class MainViewModel : ViewModelBase
-{
+namespace ImageUseVectors.App.ViewModels;
+
+public class MainViewModel : BaseMainViewModel<WriteableBitmap> {
     public string Greeting => "Welcome to Avalonia!";
+
 }

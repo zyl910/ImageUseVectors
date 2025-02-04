@@ -1,7 +1,8 @@
 ﻿using ReactiveUI;
+using System;
 
 namespace ImageUseVectors.App.ViewModels;
 
-public class ViewModelBase : ReactiveObject
-{
+[Obsolete("Please use BaseViewModel.")]
+public class ViewModelBase : ReactiveObject {
 }

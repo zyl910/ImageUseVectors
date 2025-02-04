@@ -3,14 +3,111 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:ImageUseVectors.App.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
              x:Class="ImageUseVectors.App.Views.MainView"
-             x:DataType="vm:MainViewModel">
-  <Design.DataContext>
+             x:DataType="vm:MainViewModel"
+             SizeChanged="OnSizeChanged">
+    <Design.DataContext>
     <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
     <vm:MainViewModel />
   </Design.DataContext>
 
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <DockPanel>
+        <TabControl Margin="2" DockPanel.Dock="Top">
+            <TabItem Header="General" ToolTip.Tip="General (一般)">
+                <DockPanel>
+                    <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <Button Margin="2" Click="OpenButtonClicked" ToolTip.Tip="Open (打开)" >_Open</Button>
+                        <Button Margin="2" ToolTip.Tip="Save (保存)">_Save</Button>
+                        <Button Margin="2" ToolTip.Tip="Undo (撤销)">_Undo</Button>
+                        <Button Margin="2" ToolTip.Tip="Redo (重做)">_Redo</Button>
+                        <ComboBox SelectedIndex="0" VerticalAlignment="Center" ToolTip.Tip="Use SIMD vector hardware acceleration (使用SIMD向量硬件加速)">
+                            <ComboBoxItem>Auto</ComboBoxItem>
+                            <ComboBoxItem>Force scalar</ComboBoxItem>
+                            <ComboBoxItem>Force vector</ComboBoxItem>
+                        </ComboBox>
+                        <CheckBox Margin="2" ToolTip.Tip="Use multithreading for parallel acceleration (使用多线程进行并行加速)">Parallel</CheckBox>
+                        <CheckBox Margin="2" ToolTip.Tip="Whether to run benchmark test when click button. If it is checked, the button response will slow down because benchmark testing requires a longer execution time (点击按钮时是否运行基准测试. 若它被勾选，按钮反应会变慢，因基准测试需执行较长时间)">Benchmark</CheckBox>
+                        <Label Margin="2" ToolTip.Tip="CPU info (CPU信息)" VerticalAlignment="Center">CPU: </Label>
+                        <Label Margin="2" ToolTip.Tip="." VerticalAlignment="Center">.</Label>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <Button Margin="2" ToolTip.Tip="FlipX (水平翻转)" >FlipX</Button>
+                        <Button Margin="2" ToolTip.Tip="FlipY (垂直翻转)">FlipY</Button>
+                        <Button Margin="2" ToolTip.Tip="Color to grayscale (彩色转灰度)">To grayscale</Button>
+                        <Button Margin="2" ToolTip.Tip="Invert color (反转颜色)">Invert color</Button>
+                    </WrapPanel>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Brightness" ToolTip.Tip="Brightness adjustment (亮度调整)">
+                <Grid Margin="1"
+                    ColumnDefinitions="Auto, *, Auto, Auto"
+                    RowDefinitions="Auto, Auto, Auto">
+                    <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" ToolTip.Tip="Red (红色)">R:</Label>
+                    <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" ToolTip.Tip="Greed (绿色)">G:</Label>
+                    <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" ToolTip.Tip="Blue (蓝色)">B:</Label>
+                    <Slider Grid.Row="0" Grid.Column="1" Minimum="-255" Maximum="255" TickFrequency="17" TickPlacement="BottomRight" Value="{Binding BrightnessR, Mode=TwoWay}" />
+                    <Slider Grid.Row="1" Grid.Column="1" Minimum="-255" Maximum="255" TickFrequency="17" TickPlacement="BottomRight" Value="{Binding BrightnessG, Mode=TwoWay}" />
+                    <Slider Grid.Row="2" Grid.Column="1" Minimum="-255" Maximum="255" TickFrequency="17" TickPlacement="BottomRight" Value="{Binding BrightnessB, Mode=TwoWay}" />
+                    <NumericUpDown Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" FormatString="0" Width="120" Value="{Binding BrightnessR, Mode=TwoWay}" />
+                    <NumericUpDown Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" FormatString="0" Width="120" Value="{Binding BrightnessG, Mode=TwoWay}" />
+                    <NumericUpDown Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalContentAlignment="Right" FormatString="0" Width="120" Value="{Binding BrightnessB, Mode=TwoWay}" />
+                    <Button Grid.Row="0" Grid.Column="3" Margin="2" ToolTip.Tip="Apply (应用)">Apply</Button>
+                    <CheckBox Grid.Row="1" Grid.Column="3" Margin="2" IsChecked="{Binding BrightnessAuto}" ToolTip.Tip="Auto apply (自动应用)">Auto apply</CheckBox>
+                    <Button Grid.Row="2" Grid.Column="3" Margin="2" ToolTip.Tip="Reset (重置)">Reset</Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Grid Margin="1" DockPanel.Dock="Bottom"
+            ColumnDefinitions="*, Auto, Auto, Auto, Auto"
+            RowDefinitions="Auto">
+            <Border Grid.Row="0" Grid.Column="0"
+                  BorderBrush="Blue"
+                  BorderThickness="1"
+                  CornerRadius="3"
+                  Padding="2" Margin="2">
+                <Label ToolTip.Tip="{Binding StatusHintFull}" Content="{Binding StatusHint}"></Label>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1"
+                  BorderBrush="Blue"
+                  BorderThickness="1"
+                  CornerRadius="3"
+                  Padding="2" Margin="2">
+                <Label Name="StatusImageLabel" ToolTip.Tip="{Binding StatusImage}" Content="{Binding StatusImage}"></Label>
+            </Border>
+            <CheckBox Name="FitCheckBox" Grid.Row="0" Grid.Column="2" Margin="2" IsChecked="{Binding FitImage, Mode=TwoWay}" ToolTip.Tip="Fit image. When false, image is actual size (适合图像. 为false时图像是实际大小)">Fit</CheckBox>
+            <CheckBox Grid.Row="0" Grid.Column="3" Margin="2" ToolTip.Tip="View raw image (查看原始图像)">Raw</CheckBox>
+            <CheckBox Grid.Row="0" Grid.Column="4" Margin="2" ToolTip.Tip="View log panel (查看日志面板)">Log</CheckBox>
+        </Grid>
+        <Grid ColumnDefinitions="3*, 4, *">
+            <Grid Grid.Column="0" Background="LightGray">
+                <ScrollViewer Name="ActualScrollViewer" IsVisible="{Binding !FitImage}" AllowAutoHide="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" >
+                    <Image Name="ActualImage" Stretch="None" Source="{Binding BitmapCurrent}" PointerPressed="ActualImage_PointerPressed" PointerMoved="ActualImage_PointerMoved" />
+                </ScrollViewer>
+                <Image Name="FitImage" Stretch="Uniform" Source="{Binding BitmapCurrent}" IsVisible="{Binding FitImage}" PointerPressed="ActualImage_PointerPressed" PointerMoved="ActualImage_PointerMoved" />
+            </Grid>
+            <GridSplitter Grid.Column="1" Background="Gray" ResizeDirection="Columns"/>
+            <DockPanel Grid.Column="2">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <SplitButton Margin="2" Command="{Binding OnOutputInfo}" ToolTip.Tip="Output info (输出信息)" Content="_Info" >
+                        <SplitButton.Flyout>
+                            <MenuFlyout Placement="Bottom">
+                                <MenuItem Command="{Binding OutputCopy}" Header="Copy (复制)" />
+                                <MenuItem Command="{Binding OnOutputInfoSystem}" Header="Output system info (输出系统信息)" />
+                                <MenuItem Command="{Binding OnOutputInfoImage}" Header="Output image info (输出图片信息)" />
+                                <MenuItem Command="{Binding OutputClear}" Header="Clear (清空)" />
+                            </MenuFlyout>
+                        </SplitButton.Flyout>
+                    </SplitButton>
+                    <Button Margin="2" ToolTip.Tip="Run benchmark (运行基准测试)">_Run Benchmark</Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <CheckBox Margin="2" ToolTip.Tip="Auto clear (自动清空)">Auto clear</CheckBox>
+                    <CheckBox Margin="2" ToolTip.Tip="Allow all benchmark(AllowFakeBenchmark) (允许所有基准测试) ">Allow all benchmark</CheckBox>
+                </StackPanel>
+                <TextBox Name="LogTextBox" AcceptsReturn="True" TextWrapping="NoWrap" IsReadOnly="True"/>
+            </DockPanel>
+        </Grid>
+    </DockPanel>
 </UserControl>

@@ -1,21 +1,28 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using ImageUseVectors.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System;
-using Avalonia;
+using System.Threading.Tasks;
 
 namespace ImageUseVectors.App.Views;
 
 public partial class MainView : UserControl, IMainViewNotify {
     public MainView() {
         InitializeComponent();
+        // Async output system info.
+        Task.Run(() => {
+            Task.Delay(2000).ContinueWith(task => {
+                DataContextMe?.OnOutputInfoSystem();
+            });
+        });
     }
 
     private void ActualImage_PointerMoved(object? sender, Avalonia.Input.PointerEventArgs e) {

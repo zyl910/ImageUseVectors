@@ -39,7 +39,15 @@ namespace ImageUseVectors.ViewModels {
         /// </summary>
         /// <param name="args">Event arguments (事件参数).</param>
         public void RaisePropertyChanging(PropertyChangingEventArgs args) {
-            this.PropertyChangingHandler?.Invoke(this, args);
+            PropertyChangingHandler?.Invoke(this, args);
+        }
+
+        /// <summary>
+        /// Raise <see cref="PropertyChanging"/> event (触发 <see cref="PropertyChanging"/> 事件).
+        /// </summary>
+        /// <param name="propertyName">The property name (属性名).</param>
+        public void RaisePropertyChanging(string propertyName) {
+            RaisePropertyChanging(new PropertyChangingEventArgs(propertyName));
         }
 
         /// <summary>
@@ -47,7 +55,15 @@ namespace ImageUseVectors.ViewModels {
         /// </summary>
         /// <param name="args">Event arguments (事件参数).</param>
         public void RaisePropertyChanged(PropertyChangedEventArgs args) {
-            this.PropertyChangedHandler?.Invoke(this, args);
+            PropertyChangedHandler?.Invoke(this, args);
+        }
+
+        /// <summary>
+        /// Raise <see cref="PropertyChanged"/> event (触发 <see cref="PropertyChanged"/> 事件).
+        /// </summary>
+        /// <param name="propertyName">The property name (属性名).</param>
+        public void RaisePropertyChanged(string propertyName) {
+            RaisePropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
 
     }

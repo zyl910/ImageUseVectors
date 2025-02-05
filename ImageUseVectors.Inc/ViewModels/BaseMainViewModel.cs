@@ -27,6 +27,11 @@ namespace ImageUseVectors.ViewModels {
         /// <summary>Brightness - Blue</summary>
         private short _brightnessB = 0;
 
+        /// <summary>Cpu summary (CPU 简介)</summary>
+        private string? _cpuSummary = ".";
+        /// <summary>Cpu full summary (CPU 完整简介)</summary>
+        private string? _cpuSummaryFull = ".";
+
         /// <summary>Fit image. When false, image is actual size (适合图像. 为false时图像是实际大小)</summary>
         private bool _fitImage = false;
 
@@ -114,6 +119,26 @@ namespace ImageUseVectors.ViewModels {
             }
             set {
                 this.RaiseAndSetIfChanged(ref _brightnessB, value);
+            }
+        }
+
+        /// <inheritdoc cref="_cpuSummary"/>
+        public string? CpuSummary {
+            get {
+                return _cpuSummary;
+            }
+            set {
+                this.RaiseAndSetIfChanged(ref _cpuSummary, value);
+            }
+        }
+
+        /// <inheritdoc cref="_cpuSummaryFull"/>
+        public string? CpuSummaryFull {
+            get {
+                return _cpuSummaryFull;
+            }
+            set {
+                this.RaiseAndSetIfChanged(ref _cpuSummaryFull, value);
             }
         }
 

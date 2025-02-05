@@ -30,7 +30,7 @@
                         <CheckBox Margin="2" ToolTip.Tip="Use multithreading for parallel acceleration (使用多线程进行并行加速)">Parallel</CheckBox>
                         <CheckBox Margin="2" ToolTip.Tip="Whether to run benchmark test when click button. If it is checked, the button response will slow down because benchmark testing requires a longer execution time (点击按钮时是否运行基准测试. 若它被勾选，按钮反应会变慢，因基准测试需执行较长时间)">Benchmark</CheckBox>
                         <Label Margin="2" ToolTip.Tip="CPU info (CPU信息)" VerticalAlignment="Center">CPU: </Label>
-                        <Label Margin="2" ToolTip.Tip="." VerticalAlignment="Center">.</Label>
+                        <Label Margin="2" ToolTip.Tip="{Binding CpuSummaryFull}" Content="{Binding CpuSummary}" VerticalAlignment="Center"></Label>
                     </WrapPanel>
                     <WrapPanel>
                         <Button Margin="2" ToolTip.Tip="FlipX (水平翻转)" >FlipX</Button>

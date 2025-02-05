@@ -28,8 +28,8 @@ namespace ImageUseVectors.ViewModels {
         }
 
         public void OnOutputInfo() {
-            OnOutputInfoSystem();
-            OutputLog(string.Empty);
+            //OnOutputInfoSystem();
+            //OutputLog(string.Empty);
             OnOutputInfoImage();
         }
 
@@ -62,6 +62,10 @@ namespace ImageUseVectors.ViewModels {
             writer.Write("CpuDetectionResult:\t");
             VectorTextUtil.WriteLines(writer, VectorEnvironment.CpuDetectionResult);
             writer.WriteLine();
+            // CpuSummary
+            CpuSummary = VectorEnvironment.CpuModelName;
+            CpuSummaryFull = string.Format("{0} ({1})", VectorEnvironment.CpuModelName, VectorEnvironment.SupportedInstructionSets);
+            if (string.IsNullOrWhiteSpace(CpuSummary)) CpuSummary = "(Unknown)";
         }
 
         /// <inheritdoc cref="_notify"/>

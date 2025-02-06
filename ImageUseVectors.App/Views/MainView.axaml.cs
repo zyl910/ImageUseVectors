@@ -15,14 +15,20 @@ using System.Threading.Tasks;
 namespace ImageUseVectors.App.Views;
 
 public partial class MainView : UserControl, IMainViewNotify {
+
+    private GridLength _oldLogGridLength = new GridLength(0);
+    private readonly GridLength _zeroGridLength = new GridLength(0);
+
     public MainView() {
         InitializeComponent();
-        // Async output system info.
-        Task.Run(() => {
-            Task.Delay(2000).ContinueWith(task => {
-                DataContextMe?.OnOutputInfoSystem();
+        if (!Design.IsDesignMode) {
+            // Async output system info.
+            Task.Run(() => {
+                Task.Delay(2000).ContinueWith(task => {
+                    DataContextMe?.OnOutputInfoSystem();
+                });
             });
-        });
+        }
     }
 
     private void ActualImage_PointerMoved(object? sender, Avalonia.Input.PointerEventArgs e) {
@@ -53,6 +59,27 @@ public partial class MainView : UserControl, IMainViewNotify {
         //}
         //if (null == DataContextMe) return;
         //DataContextMe.StatusHint = msg;
+    }
+
+    private void LogCheckBox_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e) {
+        const double defaultWidth = 240;
+        const double minWidth = 10;
+        bool flag = LogCheckBox.IsChecked ?? false;
+        var cols = MainGrid.ColumnDefinitions;
+        if (null == cols || cols.Count <= 0) return;
+        var col = cols[cols.Count - 1];
+        if (null == col) return;
+        if (flag) {
+            if (col.Width.Value <= minWidth) {
+                if (_oldLogGridLength.Value <= minWidth) {
+                    _oldLogGridLength = new GridLength(defaultWidth);
+                }
+                col.Width = _oldLogGridLength;
+            }
+        } else {
+            _oldLogGridLength = col.Width;
+            col.Width = _zeroGridLength;
+        }
     }
 
     private void OnSizeChanged(object sender, SizeChangedEventArgs e) {

@@ -77,10 +77,10 @@
                 <Label Name="StatusImageLabel" ToolTip.Tip="{Binding StatusImage}" Content="{Binding StatusImage}"></Label>
             </Border>
             <CheckBox Name="FitCheckBox" Grid.Row="0" Grid.Column="2" Margin="2" IsChecked="{Binding FitImage, Mode=TwoWay}" ToolTip.Tip="Fit image. When false, image is actual size (适合图像. 为false时图像是实际大小)">Fit</CheckBox>
-            <CheckBox Grid.Row="0" Grid.Column="3" Margin="2" ToolTip.Tip="View raw image (查看原始图像)">Raw</CheckBox>
-            <CheckBox Grid.Row="0" Grid.Column="4" Margin="2" ToolTip.Tip="View log panel (查看日志面板)">Log</CheckBox>
+            <CheckBox Name="RawCheckBox" Grid.Row="0" Grid.Column="3" Margin="2" IsChecked="{Binding ShowRaw, Mode=TwoWay}" ToolTip.Tip="Show raw image (显示原始图像)">Raw</CheckBox>
+            <CheckBox Name="LogCheckBox" Grid.Row="0" Grid.Column="4" Margin="2" IsChecked="{Binding ShowLog, Mode=TwoWay}" Click="LogCheckBox_Click" ToolTip.Tip="Show log panel (显示日志面板)">Log</CheckBox>
         </Grid>
-        <Grid ColumnDefinitions="3*, 4, *">
+        <Grid Name="MainGrid" ColumnDefinitions="*, 4, 240">
             <Grid Grid.Column="0" Background="LightGray">
                 <ScrollViewer Name="ActualScrollViewer" IsVisible="{Binding !FitImage}" AllowAutoHide="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" >
                     <Image Name="ActualImage" Stretch="None" Source="{Binding BitmapCurrent}" PointerPressed="ActualImage_PointerPressed" PointerMoved="ActualImage_PointerMoved" />
@@ -88,7 +88,7 @@
                 <Image Name="FitImage" Stretch="Uniform" Source="{Binding BitmapCurrent}" IsVisible="{Binding FitImage}" PointerPressed="ActualImage_PointerPressed" PointerMoved="ActualImage_PointerMoved" />
             </Grid>
             <GridSplitter Grid.Column="1" Background="Gray" ResizeDirection="Columns"/>
-            <DockPanel Grid.Column="2">
+            <DockPanel Grid.Column="2" IsVisible="{Binding ShowLog}">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                     <SplitButton Margin="2" Command="{Binding OnOutputInfo}" ToolTip.Tip="Output info (输出信息)" Content="_Info" >
                         <SplitButton.Flyout>

@@ -35,6 +35,11 @@ namespace ImageUseVectors.ViewModels {
         /// <summary>Fit image. When false, image is actual size (适合图像. 为false时图像是实际大小)</summary>
         private bool _fitImage = false;
 
+        /// <summary>Show log panel (显示日志面板).</summary>
+        private bool _showLog = true;
+        /// <summary>Show raw image (显示原始图像).</summary>
+        private bool _showRaw = true;
+
         /// <summary>Status text of Image</summary>
         private string _statusImage = "(StatusImage)";
         /// <summary>Status text of Hint</summary>
@@ -149,6 +154,26 @@ namespace ImageUseVectors.ViewModels {
             }
             set {
                 this.RaiseAndSetIfChanged(ref _fitImage, value);
+            }
+        }
+
+        /// <inheritdoc cref="_showLog"/>
+        public bool ShowLog {
+            get {
+                return _showLog;
+            }
+            set {
+                this.RaiseAndSetIfChanged(ref _showLog, value);
+            }
+        }
+
+        /// <inheritdoc cref="_showRaw"/>
+        public bool ShowRaw {
+            get {
+                return _showRaw;
+            }
+            set {
+                this.RaiseAndSetIfChanged(ref _showRaw, value);
             }
         }
 

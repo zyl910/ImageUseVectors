@@ -12,7 +12,7 @@ Supported architecture: Arm, Wasm, X86(Include X86-64).
 | ImageUseVectors.App.Browser | 8.0           | Avalonia | Browser               | Wasm         |
 | ImageUseVectors.App.Desktop | 8.0           | Avalonia | Linux, macOS, Windows | Arm, X86     |
 | ImageUseVectors.App.iOS     | 8.0           | Avalonia | iOS                   | Arm          |
-| ImageUseVectors.Form        | Framework 4.5 | WinForm  | Windows               | X86          |
+| ImageUseVectors.Forms       | Framework 4.5 | WinForm  | Windows               | X86          |
 
 
 ## Summary of VectorTraits  

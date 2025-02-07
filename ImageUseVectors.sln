@@ -64,6 +64,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ImageUseVectors.Inc\ImageUseVectors.Inc.projitems*{5a2b4d24-d345-47a4-ae80-b54d2803c1b7}*SharedItemsImports = 13
+		ImageUseVectors.Inc\ImageUseVectors.Inc.projitems*{ad41e3b9-4c2e-4bd8-a3f1-eabf05e1578a}*SharedItemsImports = 4
+		ImageUseVectors.Ui.Inc\ImageUseVectors.Ui.Inc.projitems*{ad41e3b9-4c2e-4bd8-a3f1-eabf05e1578a}*SharedItemsImports = 4
 		ImageUseVectors.Ui.Inc\ImageUseVectors.Ui.Inc.projitems*{bc7b250b-608c-4d34-93bc-afa160b1719a}*SharedItemsImports = 13
 		ImageUseVectors.Inc\ImageUseVectors.Inc.projitems*{fab11388-8e40-4a06-9059-b475ebc0576e}*SharedItemsImports = 5
 		ImageUseVectors.Ui.Inc\ImageUseVectors.Ui.Inc.projitems*{fab11388-8e40-4a06-9059-b475ebc0576e}*SharedItemsImports = 5

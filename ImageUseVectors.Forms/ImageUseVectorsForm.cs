@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Zyl.VectorTraits;
 
 namespace ImageUseVectors.Forms {
     public partial class ImageUseVectorsForm : Form {
         public ImageUseVectorsForm() {
             InitializeComponent();
+            TraitsOutput.OutputEnvironment(Console.Out);
         }
     }
 }

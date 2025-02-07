@@ -1,8 +1,7 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Intrinsics.Arm;
-using System.Runtime.Intrinsics.Wasm;
 using System.Text;
 using Zyl.VectorTraits;
 
@@ -42,8 +41,8 @@ namespace ImageUseVectors.ViewModels {
             OutputLog(string.Empty);
             var writer = new StringWriter();
             TraitsOutput.OutputEnvironment(writer);
-            writer.WriteLine("AdvSimd.IsSupported: {0}", AdvSimd.IsSupported);
-            writer.WriteLine("PackedSimd.IsSupported: {0}", PackedSimd.IsSupported);
+            //writer.WriteLine("AdvSimd.IsSupported: {0}", AdvSimd.IsSupported);
+            //writer.WriteLine("PackedSimd.IsSupported: {0}", PackedSimd.IsSupported);
 
             // Show cpu info.
             writer.WriteLine();
